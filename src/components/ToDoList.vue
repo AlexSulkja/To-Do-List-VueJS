@@ -11,6 +11,10 @@
                 <input v-else class="todo-item-edit" type="text" v-model="todo.title" @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)" @keyup.esc="cancelEdit(todo)" v-focus>
             </div>
             
+            <div class="archive-item">
+                <button class="archive-btn" @click="archiveTodo()">archive</button>
+            </div>
+
             <div class="remove-item" @click="removeTodo(index)">
                 &times;
             </div>
@@ -60,12 +64,14 @@ export default {
                 'title': 'andare a nuotare',
                 'completed': false,
                 'editing': false,
+                'archive': false,
             },
             {
                 'id': 2,
                 'title': 'andare a sciare',
                 'completed': false,
                 'editing': false,
+                'archive': false,
             }
         ]
       }
@@ -146,6 +152,11 @@ export default {
 
         removeTodo(index){
             this.todos.splice(index, 1)
+        },
+
+        archiveTodo(){
+            this.archive = true
+            console.log(this.archive)
         },
 
         checkAllTodos(){
